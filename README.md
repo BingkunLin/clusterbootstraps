@@ -1,24 +1,24 @@
-# library name
+## Clusterbootstraps
 
-[library] is a Python library for dealing with cluster bootstraps.
+Clusterbootstraps is a Python library for dealing with cluster bootstraps.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install clusterbootstraps.
 
 ```bash
-pip install [library]
+pip install clusterbootstraps
 ```
 
 ## Usage
 
 ```python
 [need to modify]
-import [library]
+import clusterbootstraps as cb
 
-foobar.pluralize('word') # return
-foobar.pluralize('goose') # return
-foobar.singularize('phenomena') # return 
+cb.func1()  # return
+cb.func2()  # return
+cb.func3()  # return 
 ```
 
 ## Contributing
