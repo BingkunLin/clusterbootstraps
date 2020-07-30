@@ -30,13 +30,13 @@ Please make sure to update tests as appropriate.
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ## Authors and Contact
-Bingkun Lin , a undergraduate of Jinan University,China
+Bingkun Lin , an undergraduate of Jinan University, China
 
-Shiyue Shen , a undergraduate of Jinan University,China
+Shiyue Shen , an undergraduate of Jinan University, China
 
-Ziyi Zhan , a undergraduate of Jinan University,China
+Ziyi Zhan , an undergraduate of Jinan University, China
 
-Zizhong Yan , an assistant professor of Jinan University,China
+Zizhong Yan , an assistant professor of Jinan University, China
 
 Email:
 
