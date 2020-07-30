@@ -12,7 +12,8 @@ pip install [library]
 
 ## Usage
 
-```python [need to modify]
+```python
+[need to modify]
 import [library]
 
 foobar.pluralize('word') # return
@@ -38,4 +39,4 @@ Ziyi Zhan , a undergraduate of Jinan University,China
 Zizhong Yan , an assistant professor of Jinan University,China
 
 ## Acknowledgement
-Cameron, A. Colin; Miller, Douglas L.; Gelbach, Jonah B. Working Paper , Bootstrap-based improvements for inference with clustered errors
+Cameron, A. Colin; Miller, Douglas L.; Gelbach, Jonah B. , Working Paper , Bootstrap-based improvements for inference with clustered errors
