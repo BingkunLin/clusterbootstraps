@@ -29,7 +29,7 @@ Please make sure to update tests as appropriate.
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
-## Author and Contact
+## Authors and Contact
 Bingkun Lin , a undergraduate of Jinan University,China
 
 Shiyue Shen , a undergraduate of Jinan University,China
