@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from prettytable import PrettyTable
 
-class wild:
+class Wild:
     # Y: matrix of depedent variables, cluster_var: column where variable depended to cluster in, iter: number of iterations, seed: number of seed, constant: including constant term, *args: matrix of indepedent variables,
     def __init__(self, Y, *args, cluster_var, iter = 10000, seed = 2020, alpha = 5, constant = 1): 
         np.random.seed(seed)
