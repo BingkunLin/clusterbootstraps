@@ -14,11 +14,14 @@ pip install clusterbootstraps
 
 ```python
 [need to modify]
-import clusterbootstraps as cb
+import clusterbootstraps.pair as cbp
+import clusterbootstraps.wild as cbw
 
-cb.Pair()  # return
-cb.Wild()  # return
-```
+cbp.Pair()  # input matrices or dataframes
+            # return the table
+cbw.Wild()  # input matrices or dataframes
+            # return the table
+```         
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
