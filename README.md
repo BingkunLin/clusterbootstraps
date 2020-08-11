@@ -16,9 +16,8 @@ pip install clusterbootstraps
 [need to modify]
 import clusterbootstraps as cb
 
-cb.func1()  # return
-cb.func2()  # return
-cb.func3()  # return 
+cb.Pair()  # return
+cb.Wild()  # return
 ```
 
 ## Contributing
@@ -40,5 +39,5 @@ Zizhong Yan , an assistant professor of Jinan University, China
 
 Email:
 
-## Acknowledgement
+## Reference
 Cameron, A. Colin; Miller, Douglas L.; Gelbach, Jonah B. , Working Paper , Bootstrap-based improvements for inference with clustered errors
