@@ -40,7 +40,8 @@ Ziyi Zhan , an undergraduate of Jinan University, China
 Zizhong Yan , an assistant professor of Jinan University, China
 
 Email:shenshiyue.iesr17u@outlook.com(For pair)
-      zhanziyi.iesr18u@outlook.com(For wild)
+      
+zhanziyi.iesr18u@outlook.com(For wild)
 
 ## Reference
 Cameron, A. Colin; Miller, Douglas L.; Gelbach, Jonah B. , Working Paper , Bootstrap-based improvements for inference with clustered errors
