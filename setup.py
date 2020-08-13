@@ -11,12 +11,11 @@ README = (HERE / "README.md").read_text()
 setup(
     name="Bank1999-clusterbootstraps",
     version="3.0.0",
-    description="??????????",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/Bank1999/clusterbootstraps",
     author="Bingkun Lin/Shiyue Shen/Ziyi Zhan/Zizhong Yan",
-    author_email=" ?????????",
+    author_email="linbingkun.iesr18u@foxmail.com",
     license="MIT",
     classifiers=[
         "License :: OSI Approved :: MIT License",
