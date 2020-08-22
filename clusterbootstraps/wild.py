@@ -5,13 +5,13 @@ from prettytable import PrettyTable
 
 class Wild:
     # Y: matrix of depedent variables, cluster_var: column where variable depended to cluster in, iter: number of iterations, seed: number of seed, constant: including constant term, *args: matrix of indepedent variables,
-    def __init__(self, Y, *args, cluster_var, iter = 10000, seed = 2020, alpha = 5, constant = 1): 
+    def __init__(self, Y, X, cluster_var, iter = 10000, seed = 2020, alpha = 5, constant = 1): 
         np.random.seed(seed)
 
-        if type(args[0]) != type(np.zeros([2,2])):
-            self.X = args[0].values
-            self.column = list(args[0].columns)
-            self.cluster = args[0].columns.get_loc(cluster_var)
+        if type(X) != type(np.zeros([2,2])):
+            self.X = X.values
+            self.column = list(X.columns)
+            self.cluster = X.columns.get_loc(cluster_var)
             self.Y_ = Y.values
             self.dataframe = 1
         else:
@@ -21,10 +21,10 @@ class Wild:
             self.X = X
         
         # Change the method of calculating according to constant setting 
-        if constant == 1:
-            self.X = np.c_[self.X, np.ones([self.X.shape[0], 1])]
+        if constant == 0:
+            self.X = np.delete(self.X, self.X.shape[1]-1, axis = 1)        
     
-        def cluster_(X, Y, cluster):
+        def cluster(X, Y, cluster):
             xx = np.linalg.inv(np.dot(X.T,X))
             beta = np.dot(np.dot(xx ,X.T),Y)
             xc = np.unique(X[:, cluster])
@@ -97,10 +97,10 @@ class Wild:
             self.w[b] = (self.Results[b].T - beta.T)/np.array(self.se[b])
             # Reshape results and w-statistics
             if b == 0:
-                self.Results_coef1 =  np.dot(np.dot(xx ,self.X.T),self.y)
+                self.Results_coef1 =  np.dot(np.dot(xx ,X.T),self.y)
                 self.wr = self.w[b].T
             else:
-                self.Results_coef1 =  np.c_[self.Results_coef1, np.dot(np.dot(xx ,self.X.T),self.y)]
+                self.Results_coef1 =  np.c_[self.Results_coef1, np.dot(np.dot(xx ,X.T),self.y)]
                 self.wr = np.c_[self.wr, self.w[b].T]
             
         self.mean = np.mean(self.w, axis = 0)
@@ -108,12 +108,12 @@ class Wild:
         self.low = np.partition(self.wr, obs-1, axis = 1)[:,obs-1]
         self.up = -np.partition(-self.wr, obs-1, axis = 1)[:,obs-1]
         mean_ = np.mean(self.Results_coef1, axis = 1)
-        self.mean_coef1 = np.zeros([self.X.shape[1], 1])
-        for i in range(self.X.shape[1]):
+        self.mean_coef1 = np.zeros([X.shape[1], 1])
+        for i in range(X.shape[1]):
             self.mean_coef1[i] = mean_[i]
 
     # Compute variance    
-    def se_(self):
+    def se(self):
         return self.se
     
     # Compute mean of Wald tast statistic
@@ -133,7 +133,7 @@ class Wild:
     
     # Print a table
     def table(self):
-        data1 = np.zeros((5, self.X.shape[1], 1))
+        data1 = np.zeros((5,self.X.shape[1], 1))
         data1[0] =self.beta
         data1[1] =self.mean_coef1
         data1[2] =self.mean.T
