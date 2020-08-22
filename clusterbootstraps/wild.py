@@ -5,25 +5,20 @@ from prettytable import PrettyTable
 
 class Wild:
     # Y: matrix of depedent variables, cluster_var: column where variable depended to cluster in, iter: number of iterations, seed: number of seed, constant: including constant term, *args: matrix of indepedent variables,
-    def __init__(self, Y, *args, cluster_var, iter = 10000, seed = 2020, alpha = 5, constant = 1): 
+    def __init__(self, Y, X, cluster_var, iter = 10000, seed = 2020, alpha = 5, constant = 1): 
         np.random.seed(seed)
 
-        if type(args[0]) != type(np.zeros([2,2])):
-            self.X = args[0].values
-            self.column = list(args[0].columns)
-            self.cluster = args[0].columns.get_loc(cluster_var)
+        if type(X) != type(np.zeros([2,2])):
+            self.X = X.values
+            self.column = list(X.columns)
+            self.cluster = X.columns.get_loc(cluster_var)
             self.Y_ = Y.values
             self.dataframe = 1
         else:
             self.dataframe = 0
             self.cluster = cluster_var - 1
             self.Y_ = Y
-            # Transform the input args* into a n*k matrix
-            for i in range(len(args)):
-                if i == 0:
-                    self.X = args[0]
-                else:
-                    self.X = np.r_[self.X, args[i]]
+            self.X = X
         
         # Change the method of calculating according to constant setting 
         if constant == 0:
@@ -62,7 +57,7 @@ class Wild:
         self.Results = np.zeros((iter,self.X.shape[1],1))
         self.se = np.zeros([iter,1,self.X.shape[1]])
         self.w = np.zeros((iter,1,self.X.shape[1]))
-        self.wr = np.zeros([X.shape[1],1])
+        self.wr = np.zeros([self.X.shape[1],1])
         n_cluster, X_, X__, U, U__, beta, xx = cluster_(self.X, self.Y_, self.cluster)[0], cluster_(self.X, self.Y_, self.cluster)[1], cluster_(self.X, self.Y_, self.cluster)[2], cluster_(self.X, self.Y_, self.cluster)[3], cluster_(self.X, self.Y_, self.cluster)[4], cluster_(self.X, self.Y_, self.cluster)[5], cluster_(self.X, self.Y_, self.cluster)[6]             
         self.beta = beta  
         self.iter = iter
