@@ -24,5 +24,5 @@ setup(
     ],
     packages=["clusterbootstraps"],
     include_package_data=True,
-    install_requires=["numpy", "pandas","statsmodels.api","prettytable"]
+    install_requires=["numpy", "pandas","statsmodels","prettytable"]
 )
