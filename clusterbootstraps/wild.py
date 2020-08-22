@@ -108,8 +108,8 @@ class Wild:
         self.low = np.partition(self.wr, obs-1, axis = 1)[:,obs-1]
         self.up = -np.partition(-self.wr, obs-1, axis = 1)[:,obs-1]
         mean_ = np.mean(self.Results_coef1, axis = 1)
-        self.mean_coef1 = np.zeros([X.shape[1], 1])
-        for i in range(X.shape[1]):
+        self.mean_coef1 = np.zeros([self.X.shape[1], 1])
+        for i in range(self.X.shape[1]):
             self.mean_coef1[i] = mean_[i]
 
     # Compute variance    
