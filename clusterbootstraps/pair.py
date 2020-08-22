@@ -154,15 +154,15 @@ class Pair:
         self.mean = [np.nanmean(self.Results[:,i]) for i in range(len(self.coef))]
         self.mean_coef1 = [np.mean(self.Results_coef1[:,i]) for i in range(len(self.coef))]
         
-        self.low = ['{:.3f}'.format(i) for i in self.low]
-        self.up = ['{:.3f}'.format(i) for i in self.up] 
-        self.mean = ['{:.3f}'.format(i) for i in self.mean] 
-        self.coef = ['{:.3f}'.format(i) for i in self.coef]
-        self.mean_coef1 = ['{:.3f}'.format(i) for i in self.mean_coef1] 
+        self.low = ['{:.4f}'.format(i) for i in self.low]
+        self.up = ['{:.4f}'.format(i) for i in self.up] 
+        self.mean = ['{:.4f}'.format(i) for i in self.mean] 
+        self.coef = ['{:.4f}'.format(i) for i in self.coef]
+        self.mean_coef1 = ['{:.4f}'.format(i) for i in self.mean_coef1] 
        
-        temp = df.iloc[:,0:1]
+        temp = data.iloc[:,0:1]
         col_name = temp.columns[0]   
-        self.dependent = col_name  
+        self.dependent = str(col_name)  
         #adjust the caption of this table
         ylen = len(self.dependent)
         
@@ -191,8 +191,8 @@ class Pair:
             for i in range (0,self.k):
                 tb.add_row([self.var_list[i],self.coef[i], self.mean_coef1[i], \
                                 self.mean[i],self.low[i],self.up[i]])
-            tb.align = 'r'
-            tb.left_padding_width = 2
+            #tb.align = 'r'
+            tb.padding_width = 1
                     
             print(tb)
             print("* 'Lower and Upper bound' stand for %d"%self.alpha +" % confidence interval.")
