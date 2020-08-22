@@ -24,7 +24,7 @@ class Wild:
         if constant == 0:
             self.X = np.delete(self.X, self.X.shape[1]-1, axis = 1)        
     
-        def cluster_(X, Y, cluster):
+        def cluster(X, Y, cluster):
             xx = np.linalg.inv(np.dot(X.T,X))
             beta = np.dot(np.dot(xx ,X.T),Y)
             xc = np.unique(X[:, cluster])
@@ -113,7 +113,7 @@ class Wild:
             self.mean_coef1[i] = mean_[i]
 
     # Compute variance    
-    def se_(self):
+    def se(self):
         return self.se
     
     # Compute mean of Wald tast statistic
