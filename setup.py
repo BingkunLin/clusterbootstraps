@@ -24,10 +24,5 @@ setup(
     ],
     packages=["clusterbootstraps"],
     include_package_data=True,
-    install_requires=["numpy", "pandas","statsmodels.api","prettytable"],
-    entry_points={
-        "console_scripts": [
-            "Bank1999=clusterbootstraps.pair:Pair","Bank1999=clusterbootstraps.wild:Wild"
-        ]
-    },
+    install_requires=["numpy", "pandas","statsmodels.api","prettytable"]
 )
