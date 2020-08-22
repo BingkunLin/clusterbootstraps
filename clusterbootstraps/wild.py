@@ -132,8 +132,8 @@ class Wild:
         return self.mean_coef1
     
     # Print a table
-    def table(self,X):
-        data1 = np.zeros((5, self.X.shape[1], 1))
+    def table(self):
+        data1 = np.zeros((5,self.X.shape[1], 1))
         data1[0] =self.beta
         data1[1] =self.mean_coef1
         data1[2] =self.mean.T
