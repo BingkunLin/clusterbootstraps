@@ -27,7 +27,7 @@ class Wild:
         
         # Change the method of calculating according to constant setting 
         if constant == 1:
-            self.X = np.c_[self.X, np.ones([self.X.shape[0], 1])]
+            self.X = np.c_[np.ones([self.X.shape[0], 1]),self.X]
             self.column.insert(0, 'Constant')
     
         def cluster_(X, Y, cluster):
