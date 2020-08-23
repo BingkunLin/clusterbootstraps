@@ -10,8 +10,10 @@ class Wild:
 
         if type(X) != type(np.zeros([2,2])):
             self.X = X.values
-            self.column = list(X.columns)
+            l = list(X.columns)
             self.cluster = X.columns.get_loc(cluster_var)
+            del l[self.cluster]
+            self.column = l
             self.Y_ = Y.values
             self.dataframe = 1
         else:
@@ -19,12 +21,16 @@ class Wild:
             self.cluster = cluster_var - 1
             self.Y_ = Y
             self.X = X
+            l= list(range(1, self.X.shape[1] + 1))
+            del l[self.cluster]
+            self.column = l
         
         # Change the method of calculating according to constant setting 
-        if constant == 0:
-            self.X = np.delete(self.X, self.X.shape[1]-1, axis = 1)        
+        if constant == 1:
+            self.X = np.c_[self.X, np.ones([self.X.shape[0], 1])]
+            self.column.insert(0, 'Constant')
     
-        def cluster(X, Y, cluster):
+        def cluster_(X, Y, cluster):
             xx = np.linalg.inv(np.dot(X.T,X))
             beta = np.dot(np.dot(xx ,X.T),Y)
             xc = np.unique(X[:, cluster])
@@ -97,10 +103,10 @@ class Wild:
             self.w[b] = (self.Results[b].T - beta.T)/np.array(self.se[b])
             # Reshape results and w-statistics
             if b == 0:
-                self.Results_coef1 =  np.dot(np.dot(xx ,X.T),self.y)
+                self.Results_coef1 =  np.dot(np.dot(xx ,self.X.T),self.y)
                 self.wr = self.w[b].T
             else:
-                self.Results_coef1 =  np.c_[self.Results_coef1, np.dot(np.dot(xx ,X.T),self.y)]
+                self.Results_coef1 =  np.c_[self.Results_coef1, np.dot(np.dot(xx ,self.X.T),self.y)]
                 self.wr = np.c_[self.wr, self.w[b].T]
             
         self.mean = np.mean(self.w, axis = 0)
@@ -113,7 +119,7 @@ class Wild:
             self.mean_coef1[i] = mean_[i]
 
     # Compute variance    
-    def se(self):
+    def se_(self):
         return self.se
     
     # Compute mean of Wald tast statistic
@@ -133,20 +139,18 @@ class Wild:
     
     # Print a table
     def table(self):
-        data1 = np.zeros((5,self.X.shape[1], 1))
+        data1 = np.zeros((5, self.X.shape[1], 1))
         data1[0] =self.beta
         data1[1] =self.mean_coef1
         data1[2] =self.mean.T
         data1[3] =self.low
         data1[4] =self.up
         data = np.c_[data1[0], data1[1], data1[2], data1[3], data1[4]]
+        data = np.delete(data, self.cluster, 0)
         df = pd.DataFrame(data,
             columns=['Original Coefficients', 'Average Coefficients', 'Pair Bootstrap Wald mean', 'Lower Bound', 'Upper Bound'])
         tb = PrettyTable()
-        if self.dataframe == 0:
-            tb.add_column('Variables',df.index)
-        else:
-            tb.add_column('Variables',self.column)
+        tb.add_column('Variables',self.column)
         tb.padding_width = 1 # One space between column edges and contents (default)  
         tb.add_column('Original Coefficients',df.iloc[:, 0])
         tb.add_column('Average Coefficients',df.iloc[:, 1])
