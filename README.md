@@ -34,6 +34,22 @@ cbw.Wild()  # input matrices or dataframes
             # return the table
 ```         
 
+3.Args
+
+Y: the dependent variable
+
+X: the independent variables
+
+cluster_var:the cluster variable you choose
+
+iter[optional]:iterations,default = 10000
+
+seed[optional]:random seed number,default = 2020
+
+alpha[optional]:(1-alpha)% confidence level,default = 5
+
+constant[optional]:whether to add a constant term,default = True
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
