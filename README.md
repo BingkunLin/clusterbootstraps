@@ -15,18 +15,9 @@ pip install clusterbootstraps
 ## Package Homepage
 https://github.com/Bank1999/clusterbootstraps
 
-## Usage
-1.Introduction
-  
-Pairs Cluster Bootstrap-T
+## Usage 
 
-![](https://github.com/Bank1999/clusterbootstraps/blob/master/pictures/pair.png)
-  
-Wild Cluster Bootstrap-T
-
-![](https://github.com/Bank1999/clusterbootstraps/blob/master/pictures/wild.png)
-  
-2.Syntax
+1.Syntax
 ```python
 import clusterbootstraps.pair as cbp
 import clusterbootstraps.wild as cbw
@@ -36,6 +27,24 @@ result.table()                      # return the table
 result = cbw.Wild(Y,X,cluster_var,*args)  # input matrices or dataframes
 result.table()                      # return the table
 ```         
+
+2.Examples And Results
+```python
+import clusterbootstraps.pair as cbp
+import clusterbootstraps.wild as cbw
+result = cbp.Pair(Y = logprice,X = X.matrix,cluster_var = 'rep78')
+result.table() 
+```
+Variables  | Original Coefficients | Average Coefficients | Pair Bootstrap Wald mean | Lower Bound | Upper Bound 
+:---:|:---:|:---:|:---:|:---:|:---:
+  Constant  |         8.6486        |        8.5617        |         -0.1876          |   -2.2901   |    0.5436 
+    mpg     |        -0.0019        |       -0.0026        |          0.0508          |   -2.5909   |    1.3779   
+  headroom  |        -0.0975        |       -0.1096        |         -0.0766          |   -1.2115   |    1.0439   
+   trunk    |         0.0187        |        0.0226        |          0.1308          |   -0.4213   |    1.1609   
+   weight   |         0.0007        |        0.0006        |         -0.0342          |   -1.6886   |    2.6269   
+   length   |        -0.0096        |       -0.0082        |          0.1324          |   -0.4850   |    0.8579   
+ gear_ratio |        -0.1087        |       -0.1282        |         -0.1363          |   -1.0551   |    0.6560   
+  Foreign   |         0.5736        |        0.5612        |          0.1067          |   -0.5486   |    1.3473  
 
 3.Arguments
 
