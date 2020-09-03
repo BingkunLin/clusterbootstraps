@@ -31,20 +31,35 @@ result.table()                      # return the table
 2.Examples And Results
 ```python
 import clusterbootstraps.pair as cbp
-import clusterbootstraps.wild as cbw
 result = cbp.Pair(Y = logprice,X = X.matrix,cluster_var = 'rep78')
 result.table() 
 ```
 Variables  | Original Coefficients | Average Coefficients | Pair Bootstrap Wald mean | Lower Bound | Upper Bound 
 :---:|:---:|:---:|:---:|:---:|:---:
-  Constant  |         8.6486        |        8.5617        |         -0.1876          |   -2.2901   |    0.5436 
-    mpg     |        -0.0019        |       -0.0026        |          0.0508          |   -2.5909   |    1.3779   
-  headroom  |        -0.0975        |       -0.1096        |         -0.0766          |   -1.2115   |    1.0439   
-   trunk    |         0.0187        |        0.0226        |          0.1308          |   -0.4213   |    1.1609   
-   weight   |         0.0007        |        0.0006        |         -0.0342          |   -1.6886   |    2.6269   
-   length   |        -0.0096        |       -0.0082        |          0.1324          |   -0.4850   |    0.8579   
- gear_ratio |        -0.1087        |       -0.1282        |         -0.1363          |   -1.0551   |    0.6560   
-  Foreign   |         0.5736        |        0.5612        |          0.1067          |   -0.5486   |    1.3473  
+Constant|8.6109|8.5175|-0.1287|-1.5887|0.5903 
+mpg|-0.0029|-0.0035|0.1010|-5.1478|1.0900   
+headroom|-0.0571|-0.0667|-0.0127|-0.8497|1.1894   
+trunk|0.0134|0.0168|0.0645|-0.5975|0.9402   
+weight|0.0007|0.0006|-0.0247|-1.5046|1.3087   
+length|-0.0097|-0.0083|0.1133|-0.4805|0.6589   
+gear_ratio|-0.0976|-0.1123|-0.2112|-1.3575|0.5179   
+Foreign|0.5785|0.5624|0.2108|-0.6242|2.3799  
+
+```python
+import clusterbootstraps.wild as cbw
+result = cbw.Wild(Y = logprice,X = X.matrix,cluster_var = 'rep78')
+result.table() 
+```
+Variables  | Original Coefficients | Average Coefficients | Pair Bootstrap Wald mean | Lower Bound | Upper Bound 
+:---:|:---:|:---:|:---:|:---:|:---:
+Constant|8.5856|9.9176|-0.0005|-0.4562|0.4540 
+mpg|0.0375|0.0191|-0.0010|-0.4230|0.4274   
+headroom|-0.0564|0.0985|0.0016|-0.4482|0.4463  
+trunk|0.0119|-0.0211|-0.0017|-0.3145|0.3158   
+weight|0.0007|0.0003|0.0027|-0.4290|0.4369   
+length|-0.0101|-0.0105|-0.0012|-0.4168|0.4160   
+gear_ratio|-0.0827|0.1363|0.0003|-0.4237|0.4246   
+Foreign|0.5241|-0.3451|0.0008|-0.3882|0.3967  
 
 3.Arguments
 
