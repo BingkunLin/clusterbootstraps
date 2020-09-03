@@ -28,13 +28,13 @@ Wild Cluster Bootstrap-T
 import clusterbootstraps.pair as cbp
 import clusterbootstraps.wild as cbw
 
-cbp.Pair()  # input matrices or dataframes
-            # return the table
-cbw.Wild()  # input matrices or dataframes
-            # return the table
+result = cbp.Pair(Y,X,cluster_var,*args)  # input matrices or dataframes
+result.table()                      # return the table
+result = cbw.Wild(Y,X,cluster_var,*args)  # input matrices or dataframes
+result.table()                      # return the table
 ```         
 
-3.Args
+3.Arguments
 
 Y: the dependent variable
 
@@ -49,6 +49,12 @@ seed[optional]:random seed number,default = 2020
 alpha[optional]:(1-alpha)% confidence level,default = 5
 
 constant[optional]:whether to add a constant term,default = True
+
+4.Saved Variables
+
+self.mean:Mean of wald coefficient(s) of bootstrap sample
+self.upper_bound:Upper bound of the wald statistic
+self.lower_bound:lower bound of the wald statistic
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
