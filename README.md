@@ -39,19 +39,15 @@ result.table()                      # return the table
 
 3.Arguments
 
-Y: the dependent variable
-
-X: the independent variables
-
-cluster_var:the cluster variable you choose
-
-iter[optional]:iterations,default = 10000
-
-seed[optional]:random seed number,default = 2020
-
-alpha[optional]:(1-alpha)% confidence level,default = 5
-
-constant[optional]:whether to add a constant term,default = True
+Arguments|Introduction
+:---:|:---:
+Y|the dependent variable
+X|the independent variables
+cluster_var|the cluster variable you choose
+iter[optional]|iterations,default = 10000
+seed[optional]|random seed number,default = 2020
+alpha[optional]|(1-alpha)% confidence level,default = 5
+constant[optional]|whether to add a constant term,default = True
 
 4.Saved Variables
 
