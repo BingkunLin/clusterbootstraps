@@ -2,6 +2,9 @@
 
 Clusterbootstraps is a Python library for dealing with cluster bootstraps.
 
+There are two kinds of clusterbootstraps:pair and wild.Detailed introduction in Cameron, A. Colin; Miller, Douglas L.; Gelbach, Jonah B. , Working Paper , Bootstrap-based improvements for inference with clustered errors
+
+
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install clusterbootstraps.
