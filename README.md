@@ -53,7 +53,9 @@ constant[optional]:whether to add a constant term,default = True
 4.Saved Variables
 
 self.mean:Mean of wald coefficient(s) of bootstrap sample
+
 self.upper_bound:Upper bound of the wald statistic
+
 self.lower_bound:lower bound of the wald statistic
 
 ## Contributing
