@@ -16,10 +16,10 @@ https://github.com/Bank1999/clusterbootstraps
 1.Introduction
   
   Pairs Cluster Bootstrap-T
-  ![](https://github.com/Bank1999/clusterbootstraps/blob/master/pictures/pair.png)
+![](https://github.com/Bank1999/clusterbootstraps/pictures/pair.png)
   
   Wild Cluster Bootstrap-T
-  ![](https://github.com/Bank1999/clusterbootstraps/blob/master/pictures/wild.png)
+![](https://github.com/Bank1999/clusterbootstraps/pictures/wild.png)
   
 2.Syntax
 ```python
