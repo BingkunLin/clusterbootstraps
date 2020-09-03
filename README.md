@@ -14,7 +14,12 @@ https://github.com/Bank1999/clusterbootstraps
 
 ## Usage
 1.Introduction
+  
   Pairs Cluster Bootstrap-T
+  ![](https://github.com/Bank1999/clusterbootstraps/blob/master/pictures/pair.png)
+  
+  Wild Cluster Bootstrap-T
+  ![](https://github.com/Bank1999/clusterbootstraps/blob/master/pictures/wild.png)
   
 2.Syntax
 ```python
