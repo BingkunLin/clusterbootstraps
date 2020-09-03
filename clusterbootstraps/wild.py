@@ -158,6 +158,6 @@ class Wild:
         tb.add_column('Lower bound',df.iloc[:, 3])
         tb.add_column('Upper bound',df.iloc[:, 4])
         tb.float_format = .4
-        print('Results for method Foo''Wild Cluster Bootstrap-T(iteration = %d)'.center(108)%self.iter)
+        print('Wild Cluster Bootstrap-T(iteration = %d)'.center(108)%self.iter)
         print(tb)
         print("* 'Lower and Upper bound' stand for %d"%self.alpha +" % confidence interval.")
