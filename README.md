@@ -9,9 +9,14 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install cluster
 ```bash
 pip install clusterbootstraps
 ```
+## Package Homepage
+https://github.com/Bank1999/clusterbootstraps
 
 ## Usage
-
+1.Introduction
+  Pairs Cluster Bootstrap-T
+  
+2.Syntax
 ```python
 import clusterbootstraps.pair as cbp
 import clusterbootstraps.wild as cbw
@@ -39,9 +44,9 @@ Ziyi Zhan , an undergraduate of Jinan University, China
 
 Zizhong Yan , an assistant professor of Jinan University, China
 
-Email:shenshiyue.iesr17u@outlook.com(For pair)
-      
-zhanziyi.iesr18u@outlook.com(For wild)
+Code Maintainer:Bingkun Lin
+
+Email:linbingkun.iesr18u@outlook.com
 
 ## Reference
 Cameron, A. Colin; Miller, Douglas L.; Gelbach, Jonah B. , Working Paper , Bootstrap-based improvements for inference with clustered errors
