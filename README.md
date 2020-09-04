@@ -17,6 +17,9 @@ pip install clusterbootstraps
 
 ## 🎷 Usages
 
+### 🎷 Installed Requires
+`numpy` ``
+
 ### 🎷 Syntax
 ```python
 import clusterbootstraps.pair as cbp  # For Pairs Cluster Bootstrap-T
