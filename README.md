@@ -17,8 +17,8 @@ pip install clusterbootstraps
 
 ## 🎷 Usages
 
-### 🎷 Installed Requires
-`numpy` ``
+### 🎷 Install Requires
+`numpy` `pandas`  `statsmodels` `prettytable`
 
 ### 🎷 Syntax
 ```python
