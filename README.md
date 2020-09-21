@@ -4,7 +4,9 @@
 
 Detailed introduction of the bootstrap methodology are in reference: Cameron, A. Colin, Jonah B. Gelbach, and Douglas L. Miller. "Bootstrap-based improvements for inference with clustered errors." The Review of Economics and Statistics 90.3 (2008): 414-427.
 
-Last edited on 3rd Sep 2020. Comments are welcome. 
+The method is also programmed in Stata and namely wcbregress.
+
+Last edited on 21st Sep 2020. Comments are welcome. 
 
 ## 💿 Installations
 
