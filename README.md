@@ -1,4 +1,4 @@
-## Overview
+## 🏆 Overview
 
 `clusterbootstraps` is a Python library for **estimating a linear regression model and carrying accurate inference with clustered errors using the (i) Pairs Cluster Bootstrap-T and (ii) Wild Cluster Bootstrap-T procedures.**
 
@@ -8,7 +8,7 @@ The method is also programmed in Stata and namely wcbregress.
 
 Last edited on 21st Sep 2020. Comments are welcome. 
 
-## Installations
+## 💿 Installations
 
 This Python package can be installed via the **pip package manager** [pip](https://pip.pypa.io/en/stable/), i.e.:
 
@@ -17,12 +17,12 @@ pip install clusterbootstraps
 ```
 
 
-## Usages
+## 🎷 Usages
 
-### Install Requires
+### 🎷 Install Requires
 `numpy` `pandas`  `statsmodels` `prettytable`
 
-### Syntax
+### 🎷 Syntax
 ```python
 import clusterbootstraps.pair as cbp  # For Pairs Cluster Bootstrap-T
 import clusterbootstraps.wild as cbw  # For Wild Cluster Bootstrap-T
@@ -32,7 +32,7 @@ result.table()                      # return the table
 result = cbw.Wild(Y,X,cluster_var,*args)  # input matrices or dataframes
 result.table()                      # return the table
 ```         
-### Arguments/Options
+### 🎷 Arguments/Options
 `clusterbootstraps`
 
 Arguments|Introduction
@@ -45,7 +45,7 @@ Arguments|Introduction
 `alpha`[float]|set the (1-alpha)% confidence level,default = 5 (optional)
 `constant`[boolean]|set whether to add a constant term,default = True (optional)
 
-### Saved Variables
+### 🎷 Saved Variables
 `clusterbootstraps` stores the following:
 
 Saved Variables|Introduction
@@ -56,7 +56,7 @@ self.mean|Mean of Bootstrap Sample Wald Statistic
 self.upper_bound|Upper Bound of the Wald Statistic
 self.lower_bound|Lower Bound of the Wald Statistic
 
-### Examples
+### 🎷 Examples
 
 #### Example 1: Pairs Cluster Bootstrap-T
 Here, we run the linear regression of `logprice` on a set of covariates stored in the the matrix `X.matrix` and use the Pairs Cluster Bootstrap-T method to cluster the standard errors on level of five categories of variable `rep78`. 
