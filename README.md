@@ -68,7 +68,7 @@ import clusterbootstraps.pair as cbp
 result = cbp.Pair(Y = logprice,X = X.matrix,cluster_var = 'rep78')
 result.table() 
 ```
-Variables  | Original Coefficients | Average Coefficients | Pair Bootstrap Wald mean | Cluster Standard Error | Confidence Interval 
+Variables  | Original Coefs | Average Coefs | Pair Bootstrap Wald mean | Cluster Standard Error | Confidence Interval 
 :---:|:---:|:---:|:---:|:---:|:---:
 Constant|8.6109|8.5175|-0.1287|7.3002|[-2.2901,0.5436] 
 mpg|-0.0029|-0.0035|0.1010|2.4323|[-2.5909,1.3779]   
@@ -87,7 +87,7 @@ import clusterbootstraps.wild as cbw
 result = cbw.Wild(Y = logprice,X = X.matrix,cluster_var = 'rep78')
 result.table() 
 ```
-Variables  | Original Coefficients | Average Coefficients | Wild Bootstrap Wald mean | Cluster Standard Error | Confidence Interval 
+Variables  | Original Coefs | Average Coefs | Wild Bootstrap Wald mean | Cluster Standard Error | Confidence Interval 
 :---:|:---:|:---:|:---:|:---:|:---:
 Constant|8.5856|9.9176|-0.0005|4.4025|[-0.4649, 0.4647] 
 mpg|0.0375|0.0191|-0.0010|0.1773|[-0.4189, 0.4291]  
