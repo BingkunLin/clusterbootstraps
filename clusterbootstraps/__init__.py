@@ -1,2 +1,2 @@
 # Version of the clusterbootstraps package
-__version__ = "0.0.3"
+__version__ = "0.1.3"
