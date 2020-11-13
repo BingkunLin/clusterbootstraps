@@ -68,16 +68,16 @@ import clusterbootstraps.pair as cbp
 result = cbp.Pair(Y = logprice,X = X.matrix,cluster_var = 'rep78')
 result.table() 
 ```
-Variables  | Original Coefficients | Average Coefficients | Pair Bootstrap Wald mean | Lower Bound | Upper Bound 
+Variables  | Original Coefficients | Average Coefficients | Pair Bootstrap Wald mean | Cluster Standard Error | Confidence Interval 
 :---:|:---:|:---:|:---:|:---:|:---:
-Constant|8.6109|8.5175|-0.1287|-1.5887|0.5903 
-mpg|-0.0029|-0.0035|0.1010|-5.1478|1.0900   
-headroom|-0.0571|-0.0667|-0.0127|-0.8497|1.1894   
-trunk|0.0134|0.0168|0.0645|-0.5975|0.9402   
-weight|0.0007|0.0006|-0.0247|-1.5046|1.3087   
-length|-0.0097|-0.0083|0.1133|-0.4805|0.6589   
-gear_ratio|-0.0976|-0.1123|-0.2112|-1.3575|0.5179   
-Foreign|0.5785|0.5624|0.2108|-0.6242|2.3799  
+Constant|8.6109|8.5175|-0.1287|7.3002|[-2.2901,0.5436] 
+mpg|-0.0029|-0.0035|0.1010|2.4323|[-2.5909,1.3779]   
+headroom|-0.0571|-0.0667|-0.0127|25.8132|[-1.2115,1.0439]  
+trunk|0.0134|0.0168|0.0645|2.7486|[-0.4213,1.1609]   
+weight|0.0007|0.0006|-0.0247|0.0257|[-1.6886,2.6269]   
+length|-0.0097|-0.0083|0.1133|1.0446|[-0.4850,0.8579]   
+gear_ratio|-0.0976|-0.1123|-0.2112|31.7415|[-1.0551,0.6560]   
+Foreign|0.5785|0.5624|0.2108|43.4689|[-0.5486,1.3473]
 
 #### Example 2: Wild Cluster Bootstrap-T
 We run the same regression and use the Wild Cluster Bootstrap-T to cluster the standard errors.
@@ -87,16 +87,16 @@ import clusterbootstraps.wild as cbw
 result = cbw.Wild(Y = logprice,X = X.matrix,cluster_var = 'rep78')
 result.table() 
 ```
-Variables  | Original Coefficients | Average Coefficients | Pair Bootstrap Wald mean | Lower Bound | Upper Bound 
+Variables  | Original Coefficients | Average Coefficients | Wild Bootstrap Wald mean | Cluster Standard Error  | Confidence Interval 
 :---:|:---:|:---:|:---:|:---:|:---:
-Constant|8.5856|9.9176|-0.0005|-0.4562|0.4540 
-mpg|0.0375|0.0191|-0.0010|-0.4230|0.4274   
-headroom|-0.0564|0.0985|0.0016|-0.4482|0.4463  
-trunk|0.0119|-0.0211|-0.0017|-0.3145|0.3158   
-weight|0.0007|0.0003|0.0027|-0.4290|0.4369   
-length|-0.0101|-0.0105|-0.0012|-0.4168|0.4160   
-gear_ratio|-0.0827|0.1363|0.0003|-0.4237|0.4246   
-Foreign|0.5241|-0.3451|0.0008|-0.3882|0.3967  
+Constant|8.5856|9.9176|-0.0005|4.4025|[-0.4649, 0.4647] 
+mpg|0.0375|0.0191|-0.0010|0.1773|[-0.4189, 0.4291]  
+headroom|-0.0564|0.0985|0.0016|0.1365|[-0.3862, 0.3843]  
+trunk|0.0119|-0.0211|-0.0017|0.0600|[-0.3365, 0.3335]   
+weight|0.0007|0.0003|0.0027|0.0009|[-0.4297, 0.4361]  
+length|-0.0101|-0.0105|-0.0013|0.0292|[-0.4131, 0.4112]  
+gear_ratio|-0.0827|0.1363|0.0003|0.6816|[-0.4283, 0.4262]  
+Foreign|0.5241|-0.3451|0.0008|0.6512|[-0.3800, 0.3930]  
 
 
 
