@@ -1,9 +1,8 @@
-# Third party imports
 import numpy as np
 import pandas as pd
 from prettytable import PrettyTable
 
-class Wild:
+class wild:
     # Y: matrix of depedent variables, cluster_var: column where variable depended to cluster in, iter: number of iterations, seed: number of seed, constant: including constant term, *args: matrix of indepedent variables,
     def __init__(self, Y, X, cluster_var, iter = 10000, seed = 2020, alpha = 5, constant = 1): 
         np.random.seed(seed)
@@ -27,7 +26,7 @@ class Wild:
         
         # Change the method of calculating according to constant setting 
         if constant == 1:
-            self.X = np.c_[np.ones([self.X.shape[0], 1]),self.X]
+            self.X = np.c_[np.ones([self.X.shape[0], 1]), self.X]
             self.column.insert(0, 'Constant')
     
         def cluster_(X, Y, cluster):
@@ -117,10 +116,11 @@ class Wild:
         self.mean_coef1 = np.zeros([self.X.shape[1], 1])
         for i in range(self.X.shape[1]):
             self.mean_coef1[i] = mean_[i]
+        self.cluster_se = np.mean(self.se, axis = 0)
 
     # Compute variance    
-    def se_(self):
-        return self.se
+    def cluster_standard_error(self):
+        return self.cluster_se
     
     # Compute mean of Wald tast statistic
     def mean_wald(self):
@@ -137,27 +137,33 @@ class Wild:
     def new_coef(self):
         return self.mean_coef1
     
+    def cluster_standard_error(self):
+        return self.cluster_se
+    
     # Print a table
     def table(self):
-        data1 = np.zeros((5, self.X.shape[1], 1))
+        data1 = np.zeros((4, self.X.shape[1], 1))
         data1[0] =self.beta
         data1[1] =self.mean_coef1
         data1[2] =self.mean.T
-        data1[3] =self.low
-        data1[4] =self.up
-        data = np.c_[data1[0], data1[1], data1[2], data1[3], data1[4]]
+        data1[3] =self.cluster_se.T
+        data_ci = np.array(["[" + str(format(self.low[i,0],'.4f')) +", " + str(format(self.up[i,0],'.4f')) + "]" \
+                            for i in range(self.X.shape[1])])
+        data = np.c_[data1[0], data1[1], data1[2], data1[3]]
         data = np.delete(data, self.cluster, 0)
+        data_ci = np.delete(data_ci, self.cluster, 0)
+        formater="{0:.04f}".format
         df = pd.DataFrame(data,
-            columns=['Original Coefficients', 'Average Coefficients', 'Pair Bootstrap Wald mean', 'Lower Bound', 'Upper Bound'])
+            columns=['Original Coefs', 'Average Coefs', 'Wild Bootstrap Wald Mean', 'Cluster Standard Error'])
+        df = df.applymap(formater)
         tb = PrettyTable()
         tb.add_column('Variables',self.column)
         tb.padding_width = 1 # One space between column edges and contents (default)  
-        tb.add_column('Original Coefficients',df.iloc[:, 0])
-        tb.add_column('Average Coefficients',df.iloc[:, 1])
-        tb.add_column('Wild Bootstrap Wald mean',df.iloc[:, 2])
-        tb.add_column('Lower bound',df.iloc[:, 3])
-        tb.add_column('Upper bound',df.iloc[:, 4])
-        tb.float_format = .4
+        tb.add_column('Original Coefs',df.iloc[:, 0])
+        tb.add_column('Average Coefs',df.iloc[:, 1])
+        tb.add_column('Wild Bootstrap Wald Mean',df.iloc[:, 2])
+        tb.add_column('Cluster Standard Error',df.iloc[:, 3])
+        tb.add_column('Confidence Interval',data_ci)
         print('Wild Cluster Bootstrap-T(iteration = %d)'.center(108)%self.iter)
         print(tb)
-        print("* 'Lower and Upper bound' stand for %d"%self.alpha +" % confidence interval.")
+        print("* 'The table displays %d"%self.alpha +" % confidence interval of the Wald test statistics.")
