@@ -1,4 +1,3 @@
-# Third party imports
 import pandas as pd  
 import numpy as np  
 import statsmodels.api as sm  
@@ -95,6 +94,7 @@ class Pair:
         np.random.seed(seed)
         self.Results=np.zeros((self.iter,x0.shape[1]))
         self.Results_coef1=np.zeros((self.iter,x0.shape[1]))
+        self.Results_cluster=np.zeros((self.iter,x0.shape[1]))
         self.se1 = np.zeros((self.iter,x0.shape[1]))
         self.k=x0.shape[1]
         
@@ -105,7 +105,7 @@ class Pair:
             new_Bsample = np.concatenate( Bsample , axis=0 )        #convert a list of arrays into a single array        
         
             x1 = sm.add_constant(np.delete(new_Bsample[:,1:],n-1,1)) #choose X variables and add intercept term
-            y1 = new_Bsample[:,0]                              #choose Y variable
+            y1 = new_Bsample[:,0]                                    #choose Y variable
 
             if constant == 0:
                 x1 = np.delete(x1,0,1)
@@ -129,22 +129,23 @@ class Pair:
             self.x1 = x1
             self.y1 = y1
         
-            self.se1[m,:] = Unbiased_Cluster_Robust(self.cluster_array, self.cluster_ele, self.num, self.x1, self.y1)
-        
-            #calculate the Wald test statistic
-            new_wald =  (self.coef1 - self.coef)/self.se1[m,:]
+            self.se1 = Unbiased_Cluster_Robust(self.cluster_array, self.cluster_ele, self.num, self.x1, self.y1)
             
-                
+            #calculate the Wald test statistic
+            new_wald =  (self.coef1 - self.coef)/self.se1
+                            
             new_wald[new_wald ==np.inf] = 0                     #in the case that if the number is too small, replace it with 0
             new_wald[new_wald ==-np.inf] = 0
-                
+            
             self.Results[m,:] = new_wald
             self.Results_coef1[m,:]= self.coef1
+            self.Results_cluster[m,:]=self.se1
     
         self.low = np.zeros(self.k)
         self.up = np.zeros(self.k)  
         self.mean_coef1 = np.zeros(self.k)  
-         
+        self.mean_cluster_std = np.zeros(self.k) 
+        
         for i in range(self.k):
             delta = self.Results[:,i]
             kth = np.array([delta.size*(alpha*0.01/2)],dtype='i')
@@ -152,13 +153,16 @@ class Pair:
             self.up[i] = -np.partition(-delta, kth-1)[kth-1]
             
         self.mean = [np.nanmean(self.Results[:,i]) for i in range(len(self.coef))]
-        self.mean_coef1 = [np.mean(self.Results_coef1[:,i]) for i in range(len(self.coef))]
+        self.mean_coef1 = [np.nanmean(self.Results_coef1[:,i]) for i in range(len(self.coef))]
+        self.mean_cluster_std = [np.mean(self.Results_cluster[:,i]) for i in range(len(self.coef))]
         
         self.low = ['{:.4f}'.format(i) for i in self.low]
         self.up = ['{:.4f}'.format(i) for i in self.up] 
         self.mean = ['{:.4f}'.format(i) for i in self.mean] 
         self.coef = ['{:.4f}'.format(i) for i in self.coef]
         self.mean_coef1 = ['{:.4f}'.format(i) for i in self.mean_coef1] 
+        self.mean_cluster_std = ['{:.4f}'.format(i) for i in self.mean_cluster_std] 
+        self.interval = ["[{},{}]".format(self.low[i],self.up[i]) for i in range(len(self.coef))]
        
         temp = data.iloc[:,0:1]
         col_name = temp.columns[0]   
@@ -174,25 +178,25 @@ class Pair:
     def mean_wald(self):
         return self.mean
     
-    def lower_bound(self):
-        return self.low
-    
-    def upper_bound(self):
-        return self.up
+    def interval(self):
+        return self.interval
     
     def new_coef(self):
         return self.mean_coef1
     
+    def cluster_std_error(self):
+        return self.mean_cluster_std
+    
     def table(self):
             tb = PrettyTable()
             print(" "*(int(self.varlen/2+32)) +"Pairs Cluster Bootstrap-T(iteration = %d)"%self.iter)
-            tb.field_names = ["Variables", "Original Coefficients", "Average Coefficients",\
-                              "Pair Bootstrap Wald mean","Lower Bound", "Upper Bound"]
+            tb.field_names = ["Variables", "Original Coefs", "Average Coefs",\
+                              "Pair Bootstrap Wald mean","Cluster Standard Error","Confidence Interval"]
             for i in range (0,self.k):
                 tb.add_row([self.var_list[i],self.coef[i], self.mean_coef1[i], \
-                                self.mean[i],self.low[i],self.up[i]])
+                                self.mean[i],self.mean_cluster_std[i],self.interval[i]])
             #tb.align = 'r'
             tb.padding_width = 1
                     
             print(tb)
-            print("* 'Lower and Upper bound' stand for %d"%self.alpha +" % confidence interval.")
+            print("* 'The table displays %d"%self.alpha +" % confidence interval of the Pair test statistic.")
